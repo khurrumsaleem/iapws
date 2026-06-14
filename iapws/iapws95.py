@@ -1450,7 +1450,11 @@ class MEoS(_fase):
             if T > self.Tc:
                 x = 1
             elif x is None:
-                x = 0
+                rhov = self._Vapor_Density(T)
+                if rho < rhov:
+                    x = 1
+                else:
+                    x = 0
 
             if not P:
                 P = propiedades["P"]/1000.
